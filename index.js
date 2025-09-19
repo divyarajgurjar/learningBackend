@@ -18,5 +18,5 @@ app.get('/login', (req,res)=>{
 })
 
 app.listen(process.env.PORT, ()=> {
-    console.log(`Raj, I am listening at ${PORT}`)
+    console.log(`Raj, I am listening at ${process.env.PORT}`)
 })
