@@ -3,13 +3,24 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || "*",
+    credentials: true
+}));
 
 app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended:true, limit: "16kb"}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
+//import routes
+import userRouter from './routes/user.routes.js'
+app.get("/ping", (req,res) => {
+    res.send("pong")
+})
 
-export default {app}
+//app.get use nhi kar sakte. because controller and routes iss file mein nhi likhe hain
+//routes declaration
+app.use("/api/v1/users", userRouter)
+export {app}
 
