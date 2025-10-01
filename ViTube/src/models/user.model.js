@@ -29,7 +29,7 @@ const userSchema = new Schema({
         required: true,
     },
     coverImage: {
-        type: Sting
+        type: String
     },
     watchHistory: [{
         type: Schema.Types.ObjectId,
@@ -57,7 +57,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password)
 }
 
-userSchema.methods.generateAcessToken = function (){
+userSchema.methods.generateAccessToken = function (){
     return jwt.sign({ //can use await if it takes time.
         _id: this._id,
         email: this.email,
